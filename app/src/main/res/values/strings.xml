@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Hearthstone Dust Helper Lite</string>
+    <string name="cartas_neutras">Cartas Neutras</string>
+    <string name="comum">Comum</string>
+    <string name="rara">Rara</string>
+    <string name="epica">Épica</string>
+    <string name="lendaria">Lendária</string>
+    <string name="cartas_de_classe">Cartas de Classe</string>
+    <string name="investimento_total_s">Investimento total: %s</string>
+    <string name="quoeficiente_s">Quoeficiente: %s</string>
+    <string name="quoeficiente_de_investimento_s">Quoeficiente de Investimento: %s</string>
+    <string name="o_investimento_s">O investimento é: %s</string>
+
+    <string-array name="classes">
+        <item>Paladino</item>
+        <item>Druida</item>
+        <item>Caçador</item>
+        <item>Mago</item>
+        <item>Guerreiro</item>
+        <item>Sacerdote</item>
+        <item>Bruxo</item>
+        <item>Xamã</item>
+        <item>Ladino</item>
+    </string-array>
+
+    <string-array name="expansoes">
+        <item>Classic</item>
+        <item>Journey to UnGoro</item>
+        <item>Knights of the Frozen Throne</item>
+        <item>Kobolds and Catacombs</item>
+        <item>The Witchwood</item>
+        <item>The Boomsday Project</item>
+        <item>Rastakhan is Rumble</item>
+    </string-array>
+
+</resources>

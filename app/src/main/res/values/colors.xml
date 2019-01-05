@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="paladinColor">#FB1</color>
+    <color name="druidColor">#532</color>
+    <color name="hunterColor">#171</color>
+    <color name="warriorColor">#911</color>
+    <color name="mageColor">#66D</color>
+    <color name="priestColor">#DDD</color>
+    <color name="warlockColor">#609</color>
+    <color name="shamanColor">#228</color>
+    <color name="rogueColor">#222</color>
+
+</resources>
