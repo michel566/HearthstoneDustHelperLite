@@ -46,4 +46,4 @@ public class Card {
         this.expansao = expansao;
     }
 
- }
+}

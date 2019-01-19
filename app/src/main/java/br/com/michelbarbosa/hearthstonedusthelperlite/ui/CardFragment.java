@@ -1,11 +1,13 @@
 package br.com.michelbarbosa.hearthstonedusthelperlite.ui;
 
+import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,16 +16,24 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
 import br.com.michelbarbosa.hearthstonedusthelperlite.R;
+import br.com.michelbarbosa.hearthstonedusthelperlite.listeners.CardListener;
 import br.com.michelbarbosa.hearthstonedusthelperlite.model.Card;
+import br.com.michelbarbosa.hearthstonedusthelperlite.utils.Util;
 
 public class CardFragment extends Fragment implements CardListener {
 
     private CardListener listener;
+    private ArrayList<Card> cards;
+    private CardAdapter adapter;
+
+    public static CardFragment newInstance(){
+        return new CardFragment();
+    }
 
     @Nullable
     @Override
@@ -33,49 +43,41 @@ public class CardFragment extends Fragment implements CardListener {
         View mainView = inflater.inflate(R.layout.fragment_card_list, container, false);
 
         // 1. get a reference to recyclerView
-        RecyclerView rv = mainView.findViewById(R.id.card_recycleView);
-/*
-        // 2. set layoutManger
-        recyclerViewofCards.setLayoutManager(new LinearLayoutManager(getContext()));
+        RecyclerView recyclerViewofCards = mainView.findViewById(R.id.card_recycleView);
 
-        // 3. create an adapter
-        CardAdapter adapter = new CardAdapter(cardList);
+        // 2. set layoutManger to do a list, and set the render
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerViewofCards.setLayoutManager(layoutManager);
 
-        // 4. set adapter
-        recyclerViewofCards.setAdapter(adapter);
-
-        // 5. set divider to separate the adapters .addItemDecoration(
-        recyclerViewofCards.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-
-        // 6. set item animator to DefaultAnimator
-        recyclerViewofCards.setItemAnimator(new DefaultItemAnimator());
-
-        // 7. set listener in adapter
-        adapter.setListener(this);
-*/
-
-        // Configurando o gerenciador de layout para ser uma lista.
-        RecyclerView.LayoutManager lm = new LinearLayoutManager(getContext());
-        rv.setLayoutManager(lm);
-
-        // Depende do metodo populateTestItens acima
+        // 3. create an adapter, and populate them
         CardAdapter adapter = new CardAdapter(getContext(), populateTestItens(), listener);
 
-        // Adiciona o adapter que irá anexar os objetos à lista.
-        rv.setAdapter(adapter);
+        // 4. set adapter, and add objects to list
+        recyclerViewofCards.setAdapter(adapter);
 
-        // Configurando um dividr entre linhas, para uma melhor visualização.
-        rv.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        // 5. set listener in adapter
+        adapter.setListener(this);
 
-        // Configurando o listener
-        //adapter.setListener(this);
+        // 6. set divider to separate the adapters .addItemDecoration(
+        addDividerToCard(recyclerViewofCards, getContext());
 
-        //Animation
-        rv.setItemAnimator(new DefaultItemAnimator());
+        // 7. set item animator to DefaultAnimator
+        recyclerViewofCards.setItemAnimator(new DefaultItemAnimator());
 
-        // setupRecycler(recyclerViewofCards);
+        // 8. set the Listener
+        adapter.setListener(this);
 
         return mainView;
+    }
+
+    private void setRenderReverseRecycler(LinearLayoutManager layoutManager){
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
+    }
+
+    private void addDividerToCard(RecyclerView recyclerView, Context context){
+        // Configurando um dividr entre linhas, para uma melhor visualização.
+        recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
     }
 
     @Override
@@ -86,6 +88,7 @@ public class CardFragment extends Fragment implements CardListener {
          int SomeInt = getArguments().getInt("someInt", 0);
          String someTitle = getArguments().getString("someTitle", "");
          */
+
     }
 
     @Override
@@ -97,8 +100,14 @@ public class CardFragment extends Fragment implements CardListener {
         } else {
             throw new ClassCastException(context.toString() + "must implement CardFragment.CardListener");
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
     }
+
 
     // Dispara o metodo implementado pela Activity
 
@@ -117,35 +126,38 @@ public class CardFragment extends Fragment implements CardListener {
     */
 
     //
-    private static ArrayList<Card> populateTestItens(){
+    static ArrayList<Card> populateTestItens() {
 
         ArrayList<Card> cardList = new ArrayList<>();
 
-        cardList.add(0, new Card("carta 1", "comum", "neutra", "expansao1"));
-        cardList.add(1, new Card("carta 2", "rara", "warrior", "expansao3"));
-        cardList.add(2, new Card("carta 3", "rara", "mage", "expansao1"));
-        cardList.add(3, new Card("carta 4", "comum", "rogue", "expansao2"));
-        cardList.add(4, new Card("carta 5", "lendaria", "druid", "expansao2"));
-        cardList.add(5, new Card("carta 6", "comum", "neutra", "expansao4"));
-        cardList.add(6, new Card("carta 7", "epica", "rogue", "expansao3"));
-        cardList.add(7, new Card("carta 8", "comum", "shaman", "expansao4"));
-        cardList.add(8, new Card("carta 9", "comum", "neutra", "expansao4"));
-        cardList.add(9, new Card("carta 10", "comum", "priest", "expansao1"));
+        cardList.add(0, new Card("carta 1", "comum", "Neutro", "expansao1"));
+        cardList.add(1, new Card("carta 2", "rara", "Guerreiro", "expansao3"));
+        cardList.add(2, new Card("carta 3", "rara", "Mago", "expansao1"));
+        cardList.add(3, new Card("carta 4", "comum", "Ladino", "expansao2"));
+        cardList.add(4, new Card("carta 5", "lendaria", "Druida", "expansao2"));
+        cardList.add(5, new Card("carta 6", "comum", "Neutro", "expansao4"));
+        cardList.add(6, new Card("carta 7", "epica", "Ladino", "expansao3"));
+        cardList.add(7, new Card("carta 8", "comum", "Xamã", "expansao4"));
+        cardList.add(8, new Card("carta 9", "comum", "Neutro", "expansao4"));
+        cardList.add(9, new Card("carta 10", "comum", "Paladino", "expansao1"));
 
         return cardList;
 
     }
 
-    private void setupRecycler(RecyclerView rv){
+    static String obterClasse(ArrayList<Card> cardList, int position){
+        return cardList.get(position).getClasse();
+    }
 
-
+    static void setCardColor(RelativeLayout layout, String classe){
+        layout.setBackgroundResource(Util.getBackgroundColorToClass(classe));
     }
 
 
-    // This is a bundle communicator
+     // This is a bundle communicator
     // DemoFragment.newInstance(5, "Hello");
 
-    static CardFragment newInstance(int someInt, String someTitle){
+    static CardFragment newInstance(int someInt, String someTitle) {
 
         CardFragment fragment = new CardFragment();
         Bundle args = new Bundle();
@@ -157,7 +169,7 @@ public class CardFragment extends Fragment implements CardListener {
     }
 
     //This is a method communicator
-    void doSomething(FragmentTransaction ft){
+    void doSomething(FragmentTransaction ft) {
 
         //This codelines is a only example with you can made
 
@@ -171,4 +183,30 @@ public class CardFragment extends Fragment implements CardListener {
     public void onClick(String link) {
         Log.i("teste", "[CardFragment.onCLick: ]Fragment.onCLick clicado");
     }
+
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
+
+    public CardAdapter getAdapter() {
+        return adapter;
+    }
+/*
+    public RecyclerView getCardView(View view) {
+        return cardView = view.findViewById(R.id.card_recycleView);
+    }
+
+    public void setCardView(RecyclerView cardView) {
+        this.cardView = cardView;
+    }
+*/
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
+    }
+
+    public void setAdapter(CardAdapter adapter) {
+        this.adapter = adapter;
+    }
+
+
 }

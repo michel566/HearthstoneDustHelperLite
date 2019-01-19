@@ -1,6 +1,5 @@
 package br.com.michelbarbosa.hearthstonedusthelperlite.ui;
 
-import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -9,20 +8,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import br.com.michelbarbosa.hearthstonedusthelperlite.R;
+import br.com.michelbarbosa.hearthstonedusthelperlite.listeners.CardListener;
 import br.com.michelbarbosa.hearthstonedusthelperlite.model.Card;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder>{
 
     private Context context;
     private final List<Card> cards;
+
+    private int position;
 
     private CardListener listener;
 
@@ -64,14 +64,17 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder>{
     @NonNull
     @Override
     public CardHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new CardHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_card, parent, false));
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.fragment_card, parent, false);
+        return new CardHolder(view);
     }
 
     //Método que recebe o ViewHolder e a posição da lista.
     // Aqui é recuperado o objeto da lista de Objetos pela posição e associado à ViewHolder. É onde a mágica acontece!
     @Override
     public void onBindViewHolder(@NonNull CardHolder holder, int position) {
+        //Define a posicao atual do elemento
+        setPosition(position);
 
         //Crie uma nova instancia aqui da classe CardHolder criada
 
@@ -79,6 +82,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder>{
         Card card = cards.get(position);
         holder.cardName.setText(card.getNome());
 
+
+        CardFragment.setCardColor(holder.cardLayout, CardFragment.obterClasse(CardFragment.populateTestItens(), position));
 
 /*
         holder.cardName.setText(String.format(Locale.getDefault(), "%s, %d - %s",
@@ -155,12 +160,14 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder>{
         public TextView cardName;
         public ImageButton addCard;
         public ImageButton removeCard;
+        public RelativeLayout cardLayout;
 
         public CardHolder(View itemView) {
             super(itemView);
             cardName = itemView.findViewById(R.id.card_name);
             addCard = itemView.findViewById(R.id.add_card);
             removeCard = itemView.findViewById(R.id.remove_card);
+            cardLayout = itemView.findViewById(R.id.card_selected);
 
             cardName.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -171,5 +178,14 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder>{
         }
 
     }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
 
 }

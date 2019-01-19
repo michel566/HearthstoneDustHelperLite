@@ -2,15 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
     android:gravity="bottom"
     android:orientation="vertical">
 
     <FrameLayout
         android:id="@+id/fragment_manager"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="@android:color/holo_red_dark" />
-
+        android:layout_height="250dp" />
 
 </RelativeLayout>

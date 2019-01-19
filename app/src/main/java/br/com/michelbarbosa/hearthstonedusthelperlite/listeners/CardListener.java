@@ -1,4 +1,4 @@
-package br.com.michelbarbosa.hearthstonedusthelperlite.ui;
+package br.com.michelbarbosa.hearthstonedusthelperlite.listeners;
 
 public interface CardListener {
 
