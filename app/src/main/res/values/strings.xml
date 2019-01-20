@@ -8,8 +8,8 @@
     <string name="cartas_de_classe">Cartas de Classe</string>
     <string name="investimento_total_s">Investimento total: %s</string>
     <string name="quoeficiente_s">Quoeficiente: %s</string>
-    <string name="quoeficiente_de_investimento_s">Quoeficiente de Investimento: %s</string>
-    <string name="o_investimento_s">O investimento é: %s</string>
+    <string name="quoeficiente_de_investimento_s">Valor/Investimento: %s</string>
+    <string name="o_investimento_s">Dust total: %s</string>
 
     <string-array name="classes">
         <item>Paladino</item>
@@ -32,5 +32,10 @@
         <item>The Boomsday Project</item>
         <item>Rastakhan is Rumble</item>
     </string-array>
+
+    <string name="nome">Nome</string>
+    <string name="raridade">Raridade</string>
+    <string name="classe">Classe</string>
+    <string name="colecao">Coleção</string>
 
 </resources>

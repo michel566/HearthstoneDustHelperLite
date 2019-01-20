@@ -17,14 +17,14 @@ public class MainActivity extends FragmentActivity implements CardListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        cardFragment = CardFragment.newInstance();
+        cardFragment = new CardFragment();
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_manager, cardFragment)
-                .commit();
+                .replace(R.id.cardContainer, cardFragment)
+                .commit(); //Para testar precisa chamar o commit dentro de um evento de clique
 
         //need for listener communication
-        cardFragment = (CardFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_manager);
+        cardFragment = (CardFragment) getSupportFragmentManager().findFragmentById(R.id.cardContainer);
     }
 
 

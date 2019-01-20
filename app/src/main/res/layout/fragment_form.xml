@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/form_deck_creator_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:gravity="top"
+    android:orientation="vertical"
+    tools:context=".ui.FormFragment">
+
+    <LinearLayout
+        android:id="@+id/manager_deck_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/deck_creator_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/colorForm">
+
+            <LinearLayout
+                android:id="@+id/text_creator_layout_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nome"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvRarity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/raridade"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvClass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/classe"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvCollection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/colecao"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/spinner_creator_layout_group"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/editName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="4dp"
+                    android:autofillHints=""
+                    android:background="@color/colorEditTextBg"
+                    android:inputType="text"
+                    android:text="Nome da sua Carta"
+                    android:textSize="14sp" />
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/spRarity"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/spClass"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/spCollection"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/manager_button_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/dust_deck_button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:src="@drawable/ic_dust" />
+
+            <ImageView
+                android:id="@+id/recycleDust_deck_button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:src="@drawable/ic_emptydust" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/result_deck_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTotalInvestment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/investimento_total_s"
+                android:textColor="@color/colorForm"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvQuoeficent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/quoeficiente_s"
+                android:textColor="@color/colorForm"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvQuoeficentOfInvestment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/quoeficiente_de_investimento_s"
+                android:textColor="@color/colorForm"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvTotalResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/o_investimento_s"
+                android:textColor="@color/colorForm"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

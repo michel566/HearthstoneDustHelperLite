@@ -31,8 +31,8 @@ public class CardFragment extends Fragment implements CardListener {
     private ArrayList<Card> cards;
     private CardAdapter adapter;
 
-    public static CardFragment newInstance(){
-        return new CardFragment();
+    public CardFragment() {
+
     }
 
     @Nullable
@@ -130,16 +130,16 @@ public class CardFragment extends Fragment implements CardListener {
 
         ArrayList<Card> cardList = new ArrayList<>();
 
-        cardList.add(0, new Card("carta 1", "comum", "Neutro", "expansao1"));
-        cardList.add(1, new Card("carta 2", "rara", "Guerreiro", "expansao3"));
-        cardList.add(2, new Card("carta 3", "rara", "Mago", "expansao1"));
+        cardList.add(0, new Card("carta 1", "comum", "Paladino", "expansao1"));
+        cardList.add(1, new Card("carta 2", "rara", "Mago", "expansao3"));
+        cardList.add(2, new Card("carta 3", "rara", "Neutro", "expansao1"));
         cardList.add(3, new Card("carta 4", "comum", "Ladino", "expansao2"));
         cardList.add(4, new Card("carta 5", "lendaria", "Druida", "expansao2"));
         cardList.add(5, new Card("carta 6", "comum", "Neutro", "expansao4"));
-        cardList.add(6, new Card("carta 7", "epica", "Ladino", "expansao3"));
+        cardList.add(6, new Card("carta 7", "epica", "Bruxo", "expansao3"));
         cardList.add(7, new Card("carta 8", "comum", "Xamã", "expansao4"));
-        cardList.add(8, new Card("carta 9", "comum", "Neutro", "expansao4"));
-        cardList.add(9, new Card("carta 10", "comum", "Paladino", "expansao1"));
+        cardList.add(8, new Card("carta 9", "comum", "Caçador", "expansao4"));
+        cardList.add(9, new Card("carta 10", "comum", "Ladino", "expansao1"));
 
         return cardList;
 

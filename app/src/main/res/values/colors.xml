@@ -3,6 +3,9 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="colorForm">#CCCCDD</color>
+    <color name="colorEditTextBg">#FFFFFF</color>
+
     <color name="paladinColor">#EBB542</color>
     <color name="druidColor">#704234</color>
     <color name="hunterColor">#248633</color>
