@@ -11,7 +11,7 @@
     <string name="quoeficiente_de_investimento_s">Valor/Investimento: %s</string>
     <string name="o_investimento_s">Dust total: %s</string>
 
-    <string-array name="classes">
+    <string-array name="spinnerClasses">
         <item>Paladino</item>
         <item>Druida</item>
         <item>Caçador</item>
@@ -23,7 +23,7 @@
         <item>Ladino</item>
     </string-array>
 
-    <string-array name="expansoes">
+    <string-array name="spinnerColecoes">
         <item>Classic</item>
         <item>Journey to UnGoro</item>
         <item>Knights of the Frozen Throne</item>
@@ -31,6 +31,14 @@
         <item>The Witchwood</item>
         <item>The Boomsday Project</item>
         <item>Rastakhan is Rumble</item>
+    </string-array>
+
+    <string-array name="spinnerRaridade">
+        <item>Básico</item>
+        <item>Comum</item>
+        <item>Raro</item>
+        <item>Épico</item>
+        <item>Lendário</item>
     </string-array>
 
     <string name="nome">Nome</string>

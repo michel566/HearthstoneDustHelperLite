@@ -26,10 +26,9 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder>{
 
     private CardListener listener;
 
-    public CardAdapter(Context context, List<Card> cards, CardListener listener) {
+    public CardAdapter(Context context, List<Card> cards) {
         this.context = context;
         this.cards = cards;
-        this.listener = listener;
     }
 
     public Context getContext() {
@@ -80,10 +79,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder>{
 
         //Aponta uma posicao para cada item
         Card card = cards.get(position);
-        holder.cardName.setText(card.getNome());
-
-
-        CardFragment.setCardColor(holder.cardLayout, CardFragment.obterClasse(CardFragment.populateTestItens(), position));
+        CardFragment.setCardColor(holder.cardLayout, card);
+        holder.card_name.setText(card.getNome());
+        holder.card_class.setText(card.getClasse());
+        holder.card_rarity.setText(card.getRaridade());
+        holder.card_collection.setText(card.getExpansao());
 
 /*
         holder.cardName.setText(String.format(Locale.getDefault(), "%s, %d - %s",
@@ -157,19 +157,27 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder>{
     //ViewHolder que irá relacionar componentes visuais do Layout ao código Java.
     public class CardHolder extends RecyclerView.ViewHolder {
 
-        public TextView cardName;
-        public ImageButton addCard;
-        public ImageButton removeCard;
-        public RelativeLayout cardLayout;
+        TextView card_name;
+        TextView card_class;
+        TextView card_rarity;
+        TextView card_collection;
 
-        public CardHolder(View itemView) {
+        ImageButton addCard;
+        ImageButton removeCard;
+        RelativeLayout cardLayout;
+
+        CardHolder(View itemView) {
             super(itemView);
-            cardName = itemView.findViewById(R.id.card_name);
+            card_name = itemView.findViewById(R.id.card_name);
+            card_class = itemView.findViewById(R.id.card_class);
+            card_rarity = itemView.findViewById(R.id.card_rarity);
+            card_collection = itemView.findViewById(R.id.card_collection);
+
             addCard = itemView.findViewById(R.id.add_card);
             removeCard = itemView.findViewById(R.id.remove_card);
             cardLayout = itemView.findViewById(R.id.card_selected);
 
-            cardName.setOnClickListener(new View.OnClickListener() {
+            card_name.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     Log.i("teste", "[CardHolder.CardHolder(): ]card name clicado");
                 }

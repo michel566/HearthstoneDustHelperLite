@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,11 +24,12 @@ import br.com.michelbarbosa.hearthstonedusthelperlite.listeners.CardListener;
 import br.com.michelbarbosa.hearthstonedusthelperlite.model.Card;
 import br.com.michelbarbosa.hearthstonedusthelperlite.utils.Util;
 
-public class CardFragment extends Fragment implements CardListener {
+public class CardFragment extends Fragment {
 
     private CardListener listener;
     private ArrayList<Card> cards;
     private CardAdapter adapter;
+    private Card card;
 
     public CardFragment() {
 
@@ -50,13 +50,13 @@ public class CardFragment extends Fragment implements CardListener {
         recyclerViewofCards.setLayoutManager(layoutManager);
 
         // 3. create an adapter, and populate them
-        CardAdapter adapter = new CardAdapter(getContext(), populateTestItens(), listener);
+        adapter = new CardAdapter(getContext(), new ArrayList<Card>(0));
 
         // 4. set adapter, and add objects to list
         recyclerViewofCards.setAdapter(adapter);
 
         // 5. set listener in adapter
-        adapter.setListener(this);
+        adapter.setListener(listener);
 
         // 6. set divider to separate the adapters .addItemDecoration(
         addDividerToCard(recyclerViewofCards, getContext());
@@ -64,8 +64,6 @@ public class CardFragment extends Fragment implements CardListener {
         // 7. set item animator to DefaultAnimator
         recyclerViewofCards.setItemAnimator(new DefaultItemAnimator());
 
-        // 8. set the Listener
-        adapter.setListener(this);
 
         return mainView;
     }
@@ -113,21 +111,22 @@ public class CardFragment extends Fragment implements CardListener {
 
     /*
     public void updateDetail(String link) {
-        listener.onClick(link);
+        listener.onUpdateDeckOnClick(link);
     }
     */
 
     /*
     @Override
-    public void onClick(View view) {
+    public void onUpdateDeckOnClick(View view) {
         Log.i("testeFragment", "fragment response");
 
     }
     */
 
     //
-    static ArrayList<Card> populateTestItens() {
 
+
+    static ArrayList<Card> populateTestItens() {
         ArrayList<Card> cardList = new ArrayList<>();
 
         cardList.add(0, new Card("carta 1", "comum", "Paladino", "expansao1"));
@@ -145,27 +144,23 @@ public class CardFragment extends Fragment implements CardListener {
 
     }
 
-    static String obterClasse(ArrayList<Card> cardList, int position){
-        return cardList.get(position).getClasse();
-    }
-
-    static void setCardColor(RelativeLayout layout, String classe){
-        layout.setBackgroundResource(Util.getBackgroundColorToClass(classe));
+    static void setCardColor(RelativeLayout layout, Card card){
+        layout.setBackgroundResource(Util.getBackgroundColorToClass(card.getClasse()));
     }
 
 
      // This is a bundle communicator
     // DemoFragment.newInstance(5, "Hello");
 
-    static CardFragment newInstance(int someInt, String someTitle) {
+    static CardFragment newInstance(/*int someInt, String someTitle*/) {
 
-        CardFragment fragment = new CardFragment();
-        Bundle args = new Bundle();
-        args.putInt("someInt", someInt);
-        args.putString("someTitle", someTitle);
-        fragment.setArguments(args);
+       // CardFragment fragment = new CardFragment();
+       // Bundle args = new Bundle();
+       // args.putInt("someInt", someInt);
+       // args.putString("someTitle", someTitle);
+       // fragment.setArguments(args);
 
-        return fragment;
+        return new CardFragment();
     }
 
     //This is a method communicator
@@ -177,11 +172,6 @@ public class CardFragment extends Fragment implements CardListener {
         CardFragment fragment = CardFragment.newInstance(5,"my title");
         ft.replace(R.id.fragment_manager, fragment);
         */
-    }
-
-    @Override
-    public void onClick(String link) {
-        Log.i("teste", "[CardFragment.onCLick: ]Fragment.onCLick clicado");
     }
 
     public ArrayList<Card> getCards() {
@@ -208,5 +198,12 @@ public class CardFragment extends Fragment implements CardListener {
         this.adapter = adapter;
     }
 
+    public Card getCard() {
+        return card;
+    }
+
+    private void setCard(Card card){
+        this.card = card;
+    }
 
 }

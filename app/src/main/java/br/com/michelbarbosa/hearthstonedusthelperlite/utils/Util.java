@@ -1,6 +1,13 @@
 package br.com.michelbarbosa.hearthstonedusthelperlite.utils;
 
+import android.support.annotation.Nullable;
+import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.michelbarbosa.hearthstonedusthelperlite.R;
+import br.com.michelbarbosa.hearthstonedusthelperlite.model.Card;
 
 public class Util {
 
@@ -83,5 +90,17 @@ public class Util {
         return valor;
     }
 
+
+    public static void outputCardLog(String tag, Card card){
+        Log.d(tag, "card: " + card.getNome() + " / " + card.getRaridade() + " / " + card.getClasse() + " / " + card.getExpansao());
+    }
+
+    public static void outputDeckLog(List<Card> deck){
+        Card card;
+        for(int i = 0; i < deck.size(); i++){
+            card = deck.get(i);
+            Log.d("outputDeckLog", "card: " + card.getNome() + " / " + card.getRaridade() + " / " + card.getClasse() + " / " + card.getExpansao());
+        }
+    }
 
 }

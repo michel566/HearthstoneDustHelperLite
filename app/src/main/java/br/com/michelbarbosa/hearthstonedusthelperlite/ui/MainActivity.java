@@ -7,9 +7,11 @@ import android.support.v4.app.FragmentTransaction;
 
 import br.com.michelbarbosa.hearthstonedusthelperlite.R;
 import br.com.michelbarbosa.hearthstonedusthelperlite.listeners.CardListener;
+import br.com.michelbarbosa.hearthstonedusthelperlite.model.Card;
 
-public class MainActivity extends FragmentActivity implements CardListener {
+public class MainActivity extends BaseActivity implements CardListener {
 
+    FormFragment formFragment;
     CardFragment cardFragment;
 
     @Override
@@ -17,21 +19,15 @@ public class MainActivity extends FragmentActivity implements CardListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        formFragment = new FormFragment();
         cardFragment = new CardFragment();
 
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.cardContainer, cardFragment)
-                .commit(); //Para testar precisa chamar o commit dentro de um evento de clique
-
-        //need for listener communication
-        cardFragment = (CardFragment) getSupportFragmentManager().findFragmentById(R.id.cardContainer);
+        managerFragmentTransaction(R.id.formContainer, formFragment);
+        managerFragmentTransaction(R.id.cardContainer, cardFragment);
     }
 
-
     @Override
-    public void onClick(String link) {
-     /*   if (cardFragment != null && cardFragment.isInLayout()){
-            cardFragment.getText(Integer.parseInt(link));
-        } */
+    public void onUpdateDeckOnClick(Card card) {
+        cardFragment.getAdapter().updateList(formFragment.getCard());
     }
 }
