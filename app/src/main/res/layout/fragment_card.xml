@@ -77,13 +77,6 @@
             android:layout_alignParentRight="true">
 
             <ImageButton
-                android:id="@+id/add_card"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/transparent"
-                android:src="@drawable/ic_baseline_add_24px" />
-
-            <ImageButton
                 android:id="@+id/remove_card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

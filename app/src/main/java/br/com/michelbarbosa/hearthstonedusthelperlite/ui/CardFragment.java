@@ -64,7 +64,6 @@ public class CardFragment extends Fragment {
         // 7. set item animator to DefaultAnimator
         recyclerViewofCards.setItemAnimator(new DefaultItemAnimator());
 
-
         return mainView;
     }
 
@@ -105,26 +104,6 @@ public class CardFragment extends Fragment {
         super.onResume();
 
     }
-
-
-    // Dispara o metodo implementado pela Activity
-
-    /*
-    public void updateDetail(String link) {
-        listener.onUpdateDeckOnClick(link);
-    }
-    */
-
-    /*
-    @Override
-    public void onUpdateDeckOnClick(View view) {
-        Log.i("testeFragment", "fragment response");
-
-    }
-    */
-
-    //
-
 
     static ArrayList<Card> populateTestItens() {
         ArrayList<Card> cardList = new ArrayList<>();

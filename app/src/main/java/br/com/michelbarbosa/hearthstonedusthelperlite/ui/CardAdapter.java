@@ -20,15 +20,15 @@ import br.com.michelbarbosa.hearthstonedusthelperlite.model.Card;
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder>{
 
     private Context context;
-    private final List<Card> cards;
+    private final List<Card> deck;
 
     private int position;
 
     private CardListener listener;
 
-    public CardAdapter(Context context, List<Card> cards) {
+    public CardAdapter(Context context, List<Card> deck) {
         this.context = context;
-        this.cards = cards;
+        this.deck = deck;
     }
 
     public Context getContext() {
@@ -39,8 +39,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder>{
         this.context = context;
     }
 
-    public List<Card> getCards() {
-        return cards;
+    public List<Card> getDeck() {
+        return deck;
     }
 
     public CardListener getListener() {
@@ -51,13 +51,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder>{
         this.listener = listener;
     }
 
-    //Listener e chamado do adapter no fragment para iteragir
-
-    /*
-    public void setListener(CardListener listener) {
-        this.listener = listener;
-    }
-    */
 
     //Método que deverá retornar layout criado pelo ViewHolder já inflado em uma view.
     @NonNull
@@ -71,41 +64,27 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder>{
     //Método que recebe o ViewHolder e a posição da lista.
     // Aqui é recuperado o objeto da lista de Objetos pela posição e associado à ViewHolder. É onde a mágica acontece!
     @Override
-    public void onBindViewHolder(@NonNull CardHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CardHolder holder, final int position) {
         //Define a posicao atual do elemento
         setPosition(position);
 
         //Crie uma nova instancia aqui da classe CardHolder criada
 
         //Aponta uma posicao para cada item
-        Card card = cards.get(position);
+        final Card card = deck.get(position);
         CardFragment.setCardColor(holder.cardLayout, card);
         holder.card_name.setText(card.getNome());
         holder.card_class.setText(card.getClasse());
         holder.card_rarity.setText(card.getRaridade());
         holder.card_collection.setText(card.getExpansao());
 
-/*
-        holder.cardName.setText(String.format(Locale.getDefault(), "%s, %d - %s",
-                cards.get(position).getNome(),
-                cards.get(position).getRaridade(),
-                cards.get(position).getClasse(),
-                cards.get(position).getExpansao()
-        ));
-*/
-
-        holder.addCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("teste", "[CardAdapter.onBindViewHolder: ]addCard clicado");
-                //(view -> updateItem(position));
-            }
-        });
         holder.removeCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("teste", "[CardAdapter.onBindViewHolder: ]removeCard clicado");
+                listener.onRemoveCard();
+                Log.i("teste", "[CardAdapter.onBindViewHolder: ]removeCardCounter clicado");
                 //(view -> removerItem(position));
+                removeCard(position);
             }
         });
 
@@ -115,7 +94,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder>{
     // pois ao tentar recuperar a quantidade da lista nula pode gerar um erro em tempo de execução
     @Override
     public int getItemCount() {
-        return cards != null ? cards.size() : 0;
+        return deck != null ? deck.size() : 0;
     }
 
     public void updateList(Card card) {
@@ -123,35 +102,33 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder>{
     }
 
     private void updateCard(int position) {
-        Card card = cards.get(position);
-        notifyItemChanged(position);
-    }
-
-    private void updateCardName(int position, String name) {
-        cards.get(position).setNome(name);
+        Card card = deck.get(position);
         notifyItemChanged(position);
     }
 
     // Método responsável por inserir um novo usuário na lista
     //e notificar que há novos itens.
-
     private void insertCard(Card card) {
-        cards.add(card);
+        deck.add(card);
         notifyItemInserted(getItemCount());
     }
 
-
     // Método responsável por atualizar um usuário já existente na lista.
     private void updateItem(int position) {
-        Card card = cards.get(position);
+        Card card = deck.get(position);
         notifyItemChanged(position);
     }
 
     // Método responsável por remover um usuário da lista.
-    private void removerItem(int position) {
-        cards.remove(position);
+    private void removeCard(int position) {
+        deck.remove(position);
         notifyItemRemoved(position);
-        notifyItemRangeChanged(position, cards.size());
+        notifyItemRangeChanged(position, deck.size());
+    }
+
+    public void clearDeck(){
+        deck.clear();
+        notifyDataSetChanged();
     }
 
     //ViewHolder que irá relacionar componentes visuais do Layout ao código Java.
@@ -162,7 +139,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder>{
         TextView card_rarity;
         TextView card_collection;
 
-        ImageButton addCard;
         ImageButton removeCard;
         RelativeLayout cardLayout;
 
@@ -173,7 +149,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder>{
             card_rarity = itemView.findViewById(R.id.card_rarity);
             card_collection = itemView.findViewById(R.id.card_collection);
 
-            addCard = itemView.findViewById(R.id.add_card);
             removeCard = itemView.findViewById(R.id.remove_card);
             cardLayout = itemView.findViewById(R.id.card_selected);
 

@@ -99,12 +99,28 @@
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/addCardButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_margin="2dp"
-            android:src="@drawable/card" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/addCardButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:src="@drawable/card" />
+
+            <TextView
+                android:id="@+id/tvCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/count"
+                android:textColor="@color/colorFormAccent"
+                android:textSize="20sp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -151,7 +167,7 @@
                 android:id="@+id/tvTotalInvestment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/investimento_total_s"
+                android:text="@string/investimento_total"
                 android:textColor="@color/colorForm"
                 android:textSize="16sp" />
 
@@ -159,7 +175,7 @@
                 android:id="@+id/tvQuoeficent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/quoeficiente_s"
+                android:text="@string/quoeficiente"
                 android:textColor="@color/colorForm"
                 android:textSize="16sp" />
 
@@ -167,7 +183,7 @@
                 android:id="@+id/tvQuoeficentOfInvestment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/quoeficiente_de_investimento_s"
+                android:text="@string/quoeficiente_de_investimento"
                 android:textColor="@color/colorForm"
                 android:textSize="16sp" />
 
@@ -175,7 +191,7 @@
                 android:id="@+id/tvTotalDust"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/o_investimento_s"
+                android:text="@string/investimento"
                 android:textColor="@color/colorForm"
                 android:textSize="16sp" />
 

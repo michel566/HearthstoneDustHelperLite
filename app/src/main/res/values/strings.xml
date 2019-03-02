@@ -6,10 +6,11 @@
     <string name="epica">Épica</string>
     <string name="lendaria">Lendária</string>
     <string name="cartas_de_classe">Cartas de Classe</string>
-    <string name="investimento_total_s">Investimento total: %s</string>
-    <string name="quoeficiente_s">Quoeficiente: %s</string>
-    <string name="quoeficiente_de_investimento_s">Valor/Investimento: %s</string>
-    <string name="o_investimento_s">Dust total: %s</string>
+    <string name="count">0</string>
+    <string name="investimento_total">Investimento total: </string>
+    <string name="quoeficiente">Quoeficiente: </string>
+    <string name="quoeficiente_de_investimento">Valor/Investimento: </string>
+    <string name="investimento">O investimento e: </string>
 
     <string-array name="spinnerClasses">
         <item>Paladino</item>
@@ -21,6 +22,7 @@
         <item>Bruxo</item>
         <item>Xamã</item>
         <item>Ladino</item>
+        <item>Neutro</item>
     </string-array>
 
     <string-array name="spinnerColecoes">

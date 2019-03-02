@@ -1,5 +1,156 @@
 package br.com.michelbarbosa.hearthstonedusthelperlite.utils;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.util.List;
+
+import br.com.michelbarbosa.hearthstonedusthelperlite.model.Card;
+
 public class DustGenerator {
+
+    public static double investimentoTotal(List<Card> deck){
+        double totalValue = 0;
+        for(int i = 0; i < deck.size(); i++){
+            totalValue += normalDustValue(deck.get(i).getRaridade());
+        }
+        return totalValue;
+    }
+
+    public static double quoeficiente(List<Card> deck){
+        double tempValue = 0, totalValue = 0;
+        for(int i = 0; i < deck.size(); i++){
+            if (deck.get(i).getClasse().equals("Neutro")){
+                tempValue += neutralQuoeficient(deck.get(i).getRaridade());
+            }
+            else {
+                tempValue += classQuoeficient(deck.get(i).getRaridade());
+            }
+
+            totalValue += expansionQuoeficient(tempValue, deck.get(i).getExpansao());
+
+        }
+        return totalValue;
+    }
+
+    public static double quoeficienteDeInvestimento(List<Card> deck){
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.00000");
+        decimalFormat.setRoundingMode(RoundingMode.DOWN);
+        return Double.parseDouble(decimalFormat.format(investimentoTotal(deck) / quoeficiente(deck)));
+    }
+
+
+    public static String classificacaoGeral(List<Card> deck){
+        double quoef = quoeficienteDeInvestimento(deck);
+        String investimentoEh = "";
+
+        if(quoef > 5 || quoef < 6){
+            investimentoEh = "Medio";
+        } else if (quoef < 5){
+            if (quoef > 3 || quoef < 5){
+                investimentoEh = "Razoável";
+            } else if (quoef < 3){
+                if (quoef > 1 || quoef < 3){
+                    investimentoEh = "Ruim";
+                } else if (quoef < 1){
+                    investimentoEh = "Péssimo";
+                }
+            }
+        } else if (quoef > 6){
+            if (quoef > 6 || quoef < 8){
+                investimentoEh = "Bom";
+            } else if (quoef < 3){
+                if (quoef > 8 || quoef < 10){
+                    investimentoEh = "Ótimo";
+                } else if (quoef < 1){
+                    investimentoEh = "Excelente";
+                }
+            }
+        }
+
+        return investimentoEh;
+    }
+
+    private static double normalDustValue(String raridade) {
+        long valorInicial = 40;
+        if (raridade != null) {
+            switch (raridade) {
+                case "comum":
+                    return valorInicial;
+                case "rara":
+                    return valorInicial * 2.5;
+                case "epica":
+                    return valorInicial * 10;
+                case "lendaria":
+                    return valorInicial * 40;
+            }
+        } else {
+            return valorInicial;
+        }
+        return valorInicial;
+    }
+
+    private static double neutralQuoeficient(String raridade) {
+       double valor =  normalDustValue(raridade);
+       if (raridade != null) {
+            switch (raridade) {
+                case "comum":
+                    return valor;
+                case "rara":
+                    return valor * 2;
+                case "epica":
+                    return valor * 3;
+                case "lendaria":
+                    return valor * 5;
+            }
+        } else {
+            return valor;
+        }
+        return valor;
+
+    }
+
+    private static double classQuoeficient(String raridade) {
+        double valor =  normalDustValue(raridade);
+        if (raridade != null) {
+            switch (raridade) {
+                case "comum":
+                    return valor;
+                case "rara":
+                    return valor * 1;
+                case "epica":
+                    return valor * 1;
+                case "lendaria":
+                    return valor * 2;
+            }
+        } else {
+            return valor;
+        }
+        return valor;
+    }
+
+    private static double expansionQuoeficient(double valor, String expansao) {
+        if (expansao != null) {
+            switch (expansao) {
+                case "Journey to UnGoro":
+                    return valor * 1;
+                case "Knights of the Frozen Throne":
+                    return valor * 2;
+                case "Kobolds and Catacombs":
+                    return valor * 3;
+                case "The Witchwood":
+                    return valor * 4;
+                case "The Boomsday Project":
+                    return valor * 5;
+                case "Rastakhan is Rumble":
+                    return valor * 6;
+                case "Classic":
+                    return valor * 12;
+            }
+        } else {
+            return valor;
+        }
+        return valor;
+
+    }
 
 }
