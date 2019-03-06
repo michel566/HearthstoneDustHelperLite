@@ -45,6 +45,10 @@ public class Util {
         Log.d(tag, "card: " + card.getNome() + " / " + card.getRaridade() + " / " + card.getClasse() + " / " + card.getExpansao());
     }
 
+    public static void outputTextLog(String tag, String value){
+        Log.d(tag, value);
+    }
+
     public static void outputDeckLog(List<Card> deck){
         Card card;
         for(int i = 0; i < deck.size(); i++){
@@ -54,7 +58,10 @@ public class Util {
     }
 
     public static String outputLocaleFormat(String text, double value){
-        return String.format(Locale.getDefault(), text + " %s", String.valueOf((int) value));
+        if (String.valueOf(value).equals("NaN")){
+            return String.format(Locale.getDefault(), text + " %s", "0");
+        }
+        return String.format(Locale.getDefault(), text + " %s", String.valueOf(value));
     }
 
     public static String outputLocaleFormat(String text, String value){

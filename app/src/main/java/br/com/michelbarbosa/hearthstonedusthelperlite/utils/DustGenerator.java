@@ -8,65 +8,62 @@ import br.com.michelbarbosa.hearthstonedusthelperlite.model.Card;
 
 public class DustGenerator {
 
-    public static double investimentoTotal(List<Card> deck){
+    public static double investimentoTotal(List<Card> deck) {
         double totalValue = 0;
-        for(int i = 0; i < deck.size(); i++){
+        for (int i = 0; i < deck.size(); i++) {
             totalValue += normalDustValue(deck.get(i).getRaridade());
         }
         return totalValue;
     }
 
-    public static double quoeficiente(List<Card> deck){
+    public static double quoeficiente(List<Card> deck) {
         double tempValue = 0, totalValue = 0;
-        for(int i = 0; i < deck.size(); i++){
-            if (deck.get(i).getClasse().equals("Neutro")){
+        for (int i = 0; i < deck.size(); i++) {
+            if (deck.get(i).getClasse().equals("Neutro")) {
                 tempValue += neutralQuoeficient(deck.get(i).getRaridade());
-            }
-            else {
+            } else {
                 tempValue += classQuoeficient(deck.get(i).getRaridade());
             }
-
             totalValue += expansionQuoeficient(tempValue, deck.get(i).getExpansao());
-
         }
         return totalValue;
     }
 
-    public static double quoeficienteDeInvestimento(List<Card> deck){
-        DecimalFormat decimalFormat = new DecimalFormat("#,##0.00000");
+    public static double quoeficienteDeInvestimento(List<Card> deck) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
         decimalFormat.setRoundingMode(RoundingMode.DOWN);
-        return Double.parseDouble(decimalFormat.format(investimentoTotal(deck) / quoeficiente(deck)));
+        double valor = investimentoTotal(deck) / quoeficiente(deck);
+        return Double.parseDouble((decimalFormat.format(valor * 1000)));
     }
 
 
-    public static String classificacaoGeral(List<Card> deck){
+    public static String classificacaoGeral(List<Card> deck) {
         double quoef = quoeficienteDeInvestimento(deck);
         String investimentoEh = "";
 
-        if(quoef > 5 || quoef < 6){
+        if (quoef > 6 && quoef < 8) {
             investimentoEh = "Medio";
-        } else if (quoef < 5){
-            if (quoef > 3 || quoef < 5){
-                investimentoEh = "Razoável";
-            } else if (quoef < 3){
-                if (quoef > 1 || quoef < 3){
-                    investimentoEh = "Ruim";
-                } else if (quoef < 1){
-                    investimentoEh = "Péssimo";
-                }
-            }
-        } else if (quoef > 6){
-            if (quoef > 6 || quoef < 8){
+        } else if (quoef < 6) {
+            if (quoef > 4 && quoef < 6) {
                 investimentoEh = "Bom";
-            } else if (quoef < 3){
-                if (quoef > 8 || quoef < 10){
+            } else if (quoef < 4) {
+                if (quoef > 2 && quoef < 4) {
                     investimentoEh = "Ótimo";
-                } else if (quoef < 1){
+                } else if (quoef < 2) {
                     investimentoEh = "Excelente";
                 }
             }
+        } else if (quoef > 8) {
+            if (quoef > 8 && quoef < 12) {
+                investimentoEh = "Razoável";
+            } else if (quoef > 12) {
+                if (quoef > 12 && quoef < 20) {
+                    investimentoEh = "Ruim";
+                } else if (quoef > 20) {
+                    investimentoEh = "Péssimo";
+                }
+            }
         }
-
         return investimentoEh;
     }
 
@@ -74,14 +71,18 @@ public class DustGenerator {
         long valorInicial = 40;
         if (raridade != null) {
             switch (raridade) {
-                case "comum":
+                case "Básico":
+                    return 0L;
+                case "Comum":
                     return valorInicial;
-                case "rara":
+                case "Raro":
                     return valorInicial * 2.5;
-                case "epica":
+                case "Épico":
                     return valorInicial * 10;
-                case "lendaria":
+                case "Lendário":
                     return valorInicial * 40;
+                default:
+                    valorInicial = 0L;
             }
         } else {
             return valorInicial;
@@ -90,37 +91,44 @@ public class DustGenerator {
     }
 
     private static double neutralQuoeficient(String raridade) {
-       double valor =  normalDustValue(raridade);
-       if (raridade != null) {
+        double valor = normalDustValue(raridade);
+        if (raridade != null) {
             switch (raridade) {
-                case "comum":
+                case "Básico":
+                    return 0L;
+                case "Comum":
                     return valor;
-                case "rara":
+                case "Raro":
                     return valor * 2;
-                case "epica":
+                case "Épico":
                     return valor * 3;
-                case "lendaria":
+                case "Lendário":
                     return valor * 5;
+                default:
+                    valor = 0L;
             }
         } else {
             return valor;
         }
         return valor;
-
     }
 
     private static double classQuoeficient(String raridade) {
-        double valor =  normalDustValue(raridade);
+        double valor = normalDustValue(raridade);
         if (raridade != null) {
             switch (raridade) {
-                case "comum":
+                case "Básico":
+                    return 0L;
+                case "Comum":
                     return valor;
-                case "rara":
+                case "Raro":
                     return valor * 1;
-                case "epica":
+                case "Épico":
                     return valor * 1;
-                case "lendaria":
+                case "Lendário":
                     return valor * 2;
+                default:
+                    valor = 0L;
             }
         } else {
             return valor;
@@ -150,7 +158,6 @@ public class DustGenerator {
             return valor;
         }
         return valor;
-
     }
 
 }

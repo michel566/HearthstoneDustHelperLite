@@ -6,6 +6,8 @@
     <color name="colorForm">#CCCCDD</color>
     <color name="colorFormAccent">#2020CF</color>
     <color name="colorEditTextBg">#FFFFFF</color>
+    <color name="countColor">#304F82</color>
+    <color name="countColorMax">#A71220</color>
 
     <color name="paladinColor">#EBB542</color>
     <color name="druidColor">#704234</color>

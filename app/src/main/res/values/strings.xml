@@ -13,6 +13,7 @@
     <string name="investimento">O investimento e: </string>
 
     <string-array name="spinnerClasses">
+        <item>Neutro</item>
         <item>Paladino</item>
         <item>Druida</item>
         <item>Caçador</item>
@@ -22,7 +23,6 @@
         <item>Bruxo</item>
         <item>Xamã</item>
         <item>Ladino</item>
-        <item>Neutro</item>
     </string-array>
 
     <string-array name="spinnerColecoes">
@@ -36,11 +36,11 @@
     </string-array>
 
     <string-array name="spinnerRaridade">
-        <item>Básico</item>
         <item>Comum</item>
         <item>Raro</item>
         <item>Épico</item>
         <item>Lendário</item>
+        <item>Básico</item>
     </string-array>
 
     <string name="nome">Nome</string>

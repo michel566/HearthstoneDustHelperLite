@@ -89,16 +89,15 @@ public class FormFragment extends Fragment {
         addCardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (count <= 30){
+                if (count < 30){
                     Card card = cardGenerator(editName.getText().toString(), spRarity.getSelectedItem().toString(), spClass.getSelectedItem().toString(), spCollection.getSelectedItem().toString());
                     setCard(card);
                     Util.outputCardLog("FormFragment - Card added ->",card);
                     //deck.add(card);
                     listener.onUpdateDeckOnClick(card);
                     count++;
-                } else {
-                    tvCount.setTextColor(getResources().getColor(R.color.colorAccent));
                 }
+
                 updateCount();
             }
         });
