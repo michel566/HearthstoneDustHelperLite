@@ -41,6 +41,21 @@ public class Util {
         }
     }
 
+    public static int getImageGemToRarity(String raridade){
+
+        if(raridade != null){
+            switch (raridade){
+                case ("Comum"): return R.drawable.commongem;
+                case ("Raro"): return R.drawable.raregem;
+                case ("Épico"): return R.drawable.epicgem;
+                case ("Lendário"): return R.drawable.legendarygem;
+            }
+        } else {
+            return 0;
+        }
+        return 0;
+    }
+
     public static void outputCardLog(String tag, Card card){
         Log.d(tag, "card: " + card.getNome() + " / " + card.getRaridade() + " / " + card.getClasse() + " / " + card.getExpansao());
     }

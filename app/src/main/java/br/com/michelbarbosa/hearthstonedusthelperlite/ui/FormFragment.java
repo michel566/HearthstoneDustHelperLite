@@ -75,6 +75,8 @@ public class FormFragment extends Fragment {
         final Spinner spRarity = view.findViewById(R.id.spRarity);
 
         //todo: criar um metodo para poder bloquear apos a primeira escolha de uma classe do game para limitar somente as escolhas (classe escolhida, neutra, classica), assim que remover todas as cartas, volta ao normal
+        //todo: olhar a url >>> https://stackoverflow.com/questions/47493043/fragment-adding-image-in-spinner
+
         final Spinner spClass = view.findViewById(R.id.spClass);
         final Spinner spCollection = view.findViewById(R.id.spCollection);
 

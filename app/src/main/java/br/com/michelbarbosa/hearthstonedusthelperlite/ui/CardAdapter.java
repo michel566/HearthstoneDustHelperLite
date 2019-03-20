@@ -1,6 +1,7 @@
 package br.com.michelbarbosa.hearthstonedusthelperlite.ui;
 
 import android.content.Context;
+import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -16,6 +18,7 @@ import java.util.List;
 import br.com.michelbarbosa.hearthstonedusthelperlite.R;
 import br.com.michelbarbosa.hearthstonedusthelperlite.listeners.CardListener;
 import br.com.michelbarbosa.hearthstonedusthelperlite.model.Card;
+import br.com.michelbarbosa.hearthstonedusthelperlite.utils.Util;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder>{
 
@@ -74,8 +77,9 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder>{
         final Card card = deck.get(position);
         CardFragment.setCardColor(holder.cardLayout, card);
         holder.card_name.setText(card.getNome());
-        holder.card_class.setText(card.getClasse());
-        holder.card_rarity.setText(card.getRaridade());
+        //holder.card_class.setText(card.getClasse());
+       // holder.card_rarity.setText(card.getRaridade());
+        holder.card_rarity.setBackgroundResource(Util.getImageGemToRarity(card.getRaridade()));
         holder.card_collection.setText(card.getExpansao());
 
         holder.removeCard.setOnClickListener(new View.OnClickListener() {
@@ -135,8 +139,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder>{
     public class CardHolder extends RecyclerView.ViewHolder {
 
         TextView card_name;
-        TextView card_class;
-        TextView card_rarity;
+       // TextView card_class;
+        ImageView card_rarity;
         TextView card_collection;
 
         ImageButton removeCard;
@@ -145,7 +149,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder>{
         CardHolder(View itemView) {
             super(itemView);
             card_name = itemView.findViewById(R.id.card_name);
-            card_class = itemView.findViewById(R.id.card_class);
+          ///  card_class = itemView.findViewById(R.id.card_class);
             card_rarity = itemView.findViewById(R.id.card_rarity);
             card_collection = itemView.findViewById(R.id.card_collection);
 

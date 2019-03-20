@@ -2,72 +2,61 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_selected"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_width="wrap_content"
+    android:layout_height="60dp"
+    android:background="@drawable/card_rounded_layout"
+    android:layout_margin="10dp">
 
     <RelativeLayout
         android:id="@+id/card_layout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:background="@drawable/texture"
+        android:gravity="center_vertical">
 
         <LinearLayout
+            android:id="@+id/cardDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:orientation="horizontal">
 
-            <LinearLayout
-                android:id="@+id/textCardLayout"
+            <TextView
+                android:id="@+id/card_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_alignParentLeft="true">
-
-                <TextView
-                    android:id="@+id/card_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    tools:text="Card name" />
-
-                <TextView
-                    android:id="@+id/card_class"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="Card class" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/textCardLayout2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true">
-
-                <TextView
-                    android:id="@+id/card_rarity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    tools:text="Card rarity" />
-
-                <TextView
-                    android:id="@+id/card_collection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="Card collection" />
-
-            </LinearLayout>
-
+                android:layout_marginBottom="2dp"
+                tools:text="Card name"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"/>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/textCardLayout2"
+            android:layout_below="@id/cardDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/card_collection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                tools:text="Card collection" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/card_rarity"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toStartOf="@+id/card_selected_manager" />
 
         <LinearLayout
             android:id="@+id/card_selected_manager"
@@ -85,7 +74,5 @@
         </LinearLayout>
 
     </RelativeLayout>
-
-
 
 </RelativeLayout>

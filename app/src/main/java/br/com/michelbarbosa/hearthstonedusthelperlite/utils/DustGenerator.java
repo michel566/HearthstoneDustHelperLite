@@ -36,10 +36,22 @@ public class DustGenerator {
         return Double.parseDouble((decimalFormat.format(valor * 1000)));
     }
 
+/*
 
-    public static String classificacaoGeral(List<Card> deck) {
+2 + 2 + 1 + 5 + 10 + 3 = 23
+23/6 = 3.83
+
+ */
+    public static String classificacaoGeral(List<Card> deck, int quantCards) {
         double quoef = quoeficienteDeInvestimento(deck);
         String investimentoEh = "";
+/*
+        if(quantCards == 0 || quota == 0){
+            return "Valor Inválido";
+        }
+
+        double quoef = (double)30/quantCards * quota;
+*/     //   Util.outputTextLog("quoef: ", String.valueOf(quoef / quantCards));
 
         if (quoef > 6 && quoef < 8) {
             investimentoEh = "Medio";

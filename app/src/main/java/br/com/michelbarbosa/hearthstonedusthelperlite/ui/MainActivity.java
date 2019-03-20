@@ -37,7 +37,7 @@ public class MainActivity extends BaseActivity implements CardListener {
                 DustGenerator.investimentoTotal(cardFragment.getAdapter().getDeck()),
                 DustGenerator.quoeficiente(cardFragment.getAdapter().getDeck()),
                 DustGenerator.quoeficienteDeInvestimento(cardFragment.getAdapter().getDeck()),
-                DustGenerator.classificacaoGeral(cardFragment.getAdapter().getDeck())
+                DustGenerator.classificacaoGeral(cardFragment.getAdapter().getDeck(), cardFragment.getAdapter().getPosition())
         );
         formFragment.setResult(result);
     }

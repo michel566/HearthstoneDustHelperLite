@@ -1,17 +1,14 @@
 package br.com.michelbarbosa.hearthstonedusthelperlite.ui;
 
-import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,12 +64,12 @@ public class CardFragment extends Fragment {
         return mainView;
     }
 
-    private void setRenderReverseRecycler(LinearLayoutManager layoutManager){
+    private void setRenderReverseRecycler(LinearLayoutManager layoutManager) {
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
     }
 
-    private void addDividerToCard(RecyclerView recyclerView, Context context){
+    private void addDividerToCard(RecyclerView recyclerView, Context context) {
         // Configurando um dividr entre linhas, para uma melhor visualização.
         recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
     }
@@ -123,66 +120,12 @@ public class CardFragment extends Fragment {
 
     }
 
-    static void setCardColor(RelativeLayout layout, Card card){
+    static void setCardColor(RelativeLayout layout, Card card) {
         layout.setBackgroundResource(Util.getBackgroundColorToClass(card.getClasse()));
-    }
-
-
-     // This is a bundle communicator
-    // DemoFragment.newInstance(5, "Hello");
-
-    static CardFragment newInstance(/*int someInt, String someTitle*/) {
-
-       // CardFragment fragment = new CardFragment();
-       // Bundle args = new Bundle();
-       // args.putInt("someInt", someInt);
-       // args.putString("someTitle", someTitle);
-       // fragment.setArguments(args);
-
-        return new CardFragment();
-    }
-
-    //This is a method communicator
-    void doSomething(FragmentTransaction ft) {
-
-        //This codelines is a only example with you can made
-
-        /*
-        CardFragment fragment = CardFragment.newInstance(5,"my title");
-        ft.replace(R.id.fragment_manager, fragment);
-        */
-    }
-
-    public ArrayList<Card> getCards() {
-        return cards;
     }
 
     public CardAdapter getAdapter() {
         return adapter;
-    }
-/*
-    public RecyclerView getCardView(View view) {
-        return cardView = view.findViewById(R.id.card_recycleView);
-    }
-
-    public void setCardView(RecyclerView cardView) {
-        this.cardView = cardView;
-    }
-*/
-    public void setCards(ArrayList<Card> cards) {
-        this.cards = cards;
-    }
-
-    public void setAdapter(CardAdapter adapter) {
-        this.adapter = adapter;
-    }
-
-    public Card getCard() {
-        return card;
-    }
-
-    private void setCard(Card card){
-        this.card = card;
     }
 
 }
