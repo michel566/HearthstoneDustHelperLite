@@ -1,10 +1,13 @@
 package br.com.michelbarbosa.hearthstonedusthelperlite.utils;
 
+import android.util.Log;
+import java.util.List;
+import java.util.Locale;
+
 import br.com.michelbarbosa.hearthstonedusthelperlite.R;
+import br.com.michelbarbosa.hearthstonedusthelperlite.model.Card;
 
 public class Util {
-
-    public static int getInvestimentoTotal;
 
     public static int getBackgroundColorToClass(String classe) {
 
@@ -38,49 +41,46 @@ public class Util {
         }
     }
 
-    private static double getPo(String carta) {
-        long valor = 40;
-        if (carta != null) {
-            switch (carta) {
-                case "comum":
-                    return valor;
-                case "rara":
-                    return valor * 2.5;
-                case "epica":
-                    return valor * 10;
-                case "lendaria":
-                    return valor * 40;
+    public static int getImageGemToRarity(String raridade){
+
+        if(raridade != null){
+            switch (raridade){
+                case ("Comum"): return R.drawable.commongem;
+                case ("Raro"): return R.drawable.raregem;
+                case ("Épico"): return R.drawable.epicgem;
+                case ("Lendário"): return R.drawable.legendarygem;
             }
         } else {
-            return valor;
+            return 0;
         }
-        return valor;
+        return 0;
     }
 
-    private static long quoeficienteCartasNeutras(int comum, int rara, int epica, int lendaria) {
-        return comum + (rara *= 2) + (epica *= 3) + (lendaria *= 5);
+    public static void outputCardLog(String tag, Card card){
+        Log.d(tag, "card: " + card.getNome() + " / " + card.getRaridade() + " / " + card.getClasse() + " / " + card.getExpansao());
     }
 
-    private static long quoeficienteCartasdeClasse(int comum, int rara, int epica, int lendaria) {
-        return comum + rara + epica + lendaria;
+    public static void outputTextLog(String tag, String value){
+        Log.d(tag, value);
     }
 
-    private static double quoeficientePorExpansao(String expansao, double valor) {
-        if (expansao != null) {
-            switch (expansao) {
-                case "Classic":
-                    return valor * 12;
-                case "Journey to Un'Goro":
-                    return valor;
-                case "Kobolds & Catacombs":
-                    return valor * 10;
-                case "lendaria":
-                    return valor * 40;
-            }
-        } else {
-            return valor;
+    public static void outputDeckLog(List<Card> deck){
+        Card card;
+        for(int i = 0; i < deck.size(); i++){
+            card = deck.get(i);
+            Log.d("outputDeckLog", "card: " + card.getNome() + " / " + card.getRaridade() + " / " + card.getClasse() + " / " + card.getExpansao());
         }
-        return valor;
+    }
+
+    public static String outputLocaleFormat(String text, double value){
+        if (String.valueOf(value).equals("NaN")){
+            return String.format(Locale.getDefault(), text + " %s", "0");
+        }
+        return String.format(Locale.getDefault(), text + " %s", String.valueOf(value));
+    }
+
+    public static String outputLocaleFormat(String text, String value){
+        return String.format(Locale.getDefault(), text + " %s", value);
     }
 
 

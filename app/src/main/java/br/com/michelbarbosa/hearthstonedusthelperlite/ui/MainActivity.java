@@ -1,15 +1,16 @@
 package br.com.michelbarbosa.hearthstonedusthelperlite.ui;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 
 import br.com.michelbarbosa.hearthstonedusthelperlite.R;
 import br.com.michelbarbosa.hearthstonedusthelperlite.listeners.CardListener;
+import br.com.michelbarbosa.hearthstonedusthelperlite.model.Card;
+import br.com.michelbarbosa.hearthstonedusthelperlite.model.Result;
+import br.com.michelbarbosa.hearthstonedusthelperlite.utils.DustGenerator;
 
-public class MainActivity extends FragmentActivity implements CardListener {
+public class MainActivity extends BaseActivity implements CardListener {
 
+    FormFragment formFragment;
     CardFragment cardFragment;
 
     @Override
@@ -17,21 +18,44 @@ public class MainActivity extends FragmentActivity implements CardListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        cardFragment = CardFragment.newInstance();
+        formFragment = new FormFragment();
+        cardFragment = new CardFragment();
 
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_manager, cardFragment)
-                .commit();
-
-        //need for listener communication
-        cardFragment = (CardFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_manager);
+        managerFragmentTransaction(R.id.formContainer, formFragment);
+        managerFragmentTransaction(R.id.cardContainer, cardFragment);
     }
-
 
     @Override
-    public void onClick(String link) {
-     /*   if (cardFragment != null && cardFragment.isInLayout()){
-            cardFragment.getText(Integer.parseInt(link));
-        } */
+    public void onUpdateDeckOnClick(Card card) {
+        cardFragment.getAdapter().updateList(formFragment.getCard());
     }
+
+    @Override
+    public void onGenerateDeckDustOnClick() {
+        //todo: put this calling in asynctask call
+        Result result = new Result(
+                DustGenerator.investimentoTotal(cardFragment.getAdapter().getDeck()),
+                DustGenerator.quoeficiente(cardFragment.getAdapter().getDeck()),
+                DustGenerator.quoeficienteDeInvestimento(cardFragment.getAdapter().getDeck()),
+                DustGenerator.classificacaoGeral(cardFragment.getAdapter().getDeck(), cardFragment.getAdapter().getPosition())
+        );
+        formFragment.setResult(result);
+    }
+
+    @Override
+    public void onGenerateCardDustOnClick(Card card) {
+
+    }
+
+    @Override
+    public void onRemoveCard() {
+        onGenerateDeckDustOnClick();
+        formFragment.removeCardCounter();
+    }
+
+    @Override
+    public void onClearDeck() {
+        cardFragment.getAdapter().clearDeck();
+    }
+
 }

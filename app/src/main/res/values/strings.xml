@@ -6,12 +6,14 @@
     <string name="epica">Épica</string>
     <string name="lendaria">Lendária</string>
     <string name="cartas_de_classe">Cartas de Classe</string>
-    <string name="investimento_total_s">Investimento total: %s</string>
-    <string name="quoeficiente_s">Quoeficiente: %s</string>
-    <string name="quoeficiente_de_investimento_s">Quoeficiente de Investimento: %s</string>
-    <string name="o_investimento_s">O investimento é: %s</string>
+    <string name="count">0</string>
+    <string name="investimento_total">Investimento total: </string>
+    <string name="quoeficiente">Quoeficiente: </string>
+    <string name="quoeficiente_de_investimento">Valor/Investimento: </string>
+    <string name="investimento">O investimento e: </string>
 
-    <string-array name="classes">
+    <string-array name="spinnerClasses">
+        <item>Neutro</item>
         <item>Paladino</item>
         <item>Druida</item>
         <item>Caçador</item>
@@ -23,7 +25,7 @@
         <item>Ladino</item>
     </string-array>
 
-    <string-array name="expansoes">
+    <string-array name="spinnerColecoes">
         <item>Classic</item>
         <item>Journey to UnGoro</item>
         <item>Knights of the Frozen Throne</item>
@@ -32,5 +34,18 @@
         <item>The Boomsday Project</item>
         <item>Rastakhan is Rumble</item>
     </string-array>
+
+    <string-array name="spinnerRaridade">
+        <item>Comum</item>
+        <item>Raro</item>
+        <item>Épico</item>
+        <item>Lendário</item>
+        <item>Básico</item>
+    </string-array>
+
+    <string name="nome">Nome</string>
+    <string name="raridade">Raridade</string>
+    <string name="classe">Classe</string>
+    <string name="colecao">Coleção</string>
 
 </resources>

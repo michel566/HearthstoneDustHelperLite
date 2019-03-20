@@ -2,12 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="bottom"
+    android:gravity="top"
     android:orientation="vertical">
 
     <FrameLayout
-        android:id="@+id/fragment_manager"
+        android:id="@+id/formContainer"
         android:layout_width="match_parent"
-        android:layout_height="250dp" />
+        android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:id="@+id/cardContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/formContainer"/>
 
 </RelativeLayout>
