@@ -1,14 +1,14 @@
 package br.com.michelbarbosa.hearthstonedusthelperlite.listeners;
 
-import br.com.michelbarbosa.hearthstonedusthelperlite.model.Card;
+import br.com.michelbarbosa.hearthstonedusthelperlite.mvp.model.StaticCard;
 
 public interface CardListener {
 
-    void onUpdateDeckOnClick(Card card);
+    void onUpdateDeckOnClick(StaticCard staticCard);
 
     void onGenerateDeckDustOnClick();
 
-    void onGenerateCardDustOnClick(Card card);
+    void onGenerateCardDustOnClick(StaticCard staticCard);
 
     void onRemoveCard();
 

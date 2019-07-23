@@ -1,11 +1,11 @@
-package br.com.michelbarbosa.hearthstonedusthelperlite.ui;
+package br.com.michelbarbosa.hearthstonedusthelperlite.ui.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.method.KeyListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,17 +17,18 @@ import java.util.Locale;
 
 import br.com.michelbarbosa.hearthstonedusthelperlite.R;
 import br.com.michelbarbosa.hearthstonedusthelperlite.listeners.CardListener;
-import br.com.michelbarbosa.hearthstonedusthelperlite.model.Card;
-import br.com.michelbarbosa.hearthstonedusthelperlite.model.Result;
-import br.com.michelbarbosa.hearthstonedusthelperlite.utils.Util;
+import br.com.michelbarbosa.hearthstonedusthelperlite.mvp.model.StaticCard;
+import br.com.michelbarbosa.hearthstonedusthelperlite.mvp.model.Result;
+import br.com.michelbarbosa.hearthstonedusthelperlite.ui.activitys.APIResponseTestActivity;
+import br.com.michelbarbosa.hearthstonedusthelperlite.utils.UIUtil;
 
 public class FormFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
 
-    private static final String CARD = "card";
+    private static final String CARD = "staticCard";
 
     // TODO: Rename and change types of parameters
-    private Card card;
+    private StaticCard staticCard;
     private Result result;
 
     private static int count = 0;
@@ -39,6 +40,8 @@ public class FormFragment extends Fragment {
     private TextView tvQuoeficent;
     private TextView tvQuoeficentOfInvestment;
     private TextView tvTotalDust;
+
+    private ImageView ivJumpToTest;
 
     public FormFragment() {
         // Required empty public constructor
@@ -56,7 +59,7 @@ public class FormFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            card = getArguments().getParcelable(CARD);
+            staticCard = getArguments().getParcelable(CARD);
         }
     }
 
@@ -80,6 +83,16 @@ public class FormFragment extends Fragment {
         final Spinner spClass = view.findViewById(R.id.spClass);
         final Spinner spCollection = view.findViewById(R.id.spCollection);
 
+        //API Teste:
+        ivJumpToTest = view.findViewById(R.id.iv_jumpToTest);
+
+        ivJumpToTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                exibirAPIResponse();
+            }
+        });
+
         tvCount = view.findViewById(R.id.tvCount);
 
         tvTotalInvestment = view.findViewById(R.id.tvTotalInvestment);
@@ -92,11 +105,11 @@ public class FormFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (count < 30){
-                    Card card = cardGenerator(editName.getText().toString(), spRarity.getSelectedItem().toString(), spClass.getSelectedItem().toString(), spCollection.getSelectedItem().toString());
-                    setCard(card);
-                    Util.outputCardLog("FormFragment - Card added ->",card);
-                    //deck.add(card);
-                    listener.onUpdateDeckOnClick(card);
+                    StaticCard staticCard = cardGenerator(editName.getText().toString(), spRarity.getSelectedItem().toString(), spClass.getSelectedItem().toString(), spCollection.getSelectedItem().toString());
+                    setStaticCard(staticCard);
+                    UIUtil.outputCardLog("FormFragment - StaticCard added ->", staticCard);
+                    //deck.add(staticCard);
+                    listener.onUpdateDeckOnClick(staticCard);
                     count++;
                 }
 
@@ -126,26 +139,31 @@ public class FormFragment extends Fragment {
         });
     }
 
+    private void exibirAPIResponse() {
+        Intent intent = new Intent(getActivity(), APIResponseTestActivity.class);
+        startActivity(intent);
+    }
+
     private void updateCount(){
         tvCount.setText(String.format(Locale.getDefault(), "%d", getCount()));
     }
 
     private void updateTextViews(boolean toClean){
         if(toClean){
-            tvTotalInvestment.setText(Util.outputLocaleFormat(getResources().getString(R.string.investimento_total), 0));
-            tvQuoeficent.setText(Util.outputLocaleFormat(getResources().getString(R.string.quoeficiente), 0));
-            tvQuoeficentOfInvestment.setText(Util.outputLocaleFormat(getResources().getString(R.string.quoeficiente_de_investimento), 0));
-            tvTotalDust.setText(Util.outputLocaleFormat(getResources().getString(R.string.investimento), ""));
+            tvTotalInvestment.setText(UIUtil.outputLocaleFormat(getResources().getString(R.string.investimento_total), 0));
+            tvQuoeficent.setText(UIUtil.outputLocaleFormat(getResources().getString(R.string.quoeficiente), 0));
+            tvQuoeficentOfInvestment.setText(UIUtil.outputLocaleFormat(getResources().getString(R.string.quoeficiente_de_investimento), 0));
+            tvTotalDust.setText(UIUtil.outputLocaleFormat(getResources().getString(R.string.investimento), ""));
             listener.onGenerateDeckDustOnClick();
         }
-        tvTotalInvestment.setText(Util.outputLocaleFormat(getResources().getString(R.string.investimento_total), result.getInvestimentoTotal()));
-        tvQuoeficent.setText(Util.outputLocaleFormat(getResources().getString(R.string.quoeficiente), result.getQuoeficiente()));
-        tvQuoeficentOfInvestment.setText(Util.outputLocaleFormat(getResources().getString(R.string.quoeficiente_de_investimento), result.getQuoefDeInvestimento()));
-        tvTotalDust.setText(Util.outputLocaleFormat(getResources().getString(R.string.investimento), result.getInvestimento()));
+        tvTotalInvestment.setText(UIUtil.outputLocaleFormat(getResources().getString(R.string.investimento_total), result.getInvestimentoTotal()));
+        tvQuoeficent.setText(UIUtil.outputLocaleFormat(getResources().getString(R.string.quoeficiente), result.getQuoeficiente()));
+        tvQuoeficentOfInvestment.setText(UIUtil.outputLocaleFormat(getResources().getString(R.string.quoeficiente_de_investimento), result.getQuoefDeInvestimento()));
+        tvTotalDust.setText(UIUtil.outputLocaleFormat(getResources().getString(R.string.investimento), result.getInvestimento()));
     }
 
-    private Card cardGenerator(String nome, String raridade, String classe, String colecao){
-        return new Card(nome, raridade, classe, colecao);
+    private StaticCard cardGenerator(String nome, String raridade, String classe, String colecao){
+        return new StaticCard(nome, raridade, classe, colecao);
     }
 
     @Override
@@ -178,12 +196,12 @@ public class FormFragment extends Fragment {
         return count;
     }
 
-    private void setCard(Card card){
-        this.card = card;
+    private void setStaticCard(StaticCard staticCard){
+        this.staticCard = staticCard;
     }
 
-    public Card getCard(){
-        return card;
+    public StaticCard getStaticCard(){
+        return staticCard;
     }
 
 }

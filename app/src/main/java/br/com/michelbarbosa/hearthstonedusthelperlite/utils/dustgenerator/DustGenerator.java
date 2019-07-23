@@ -1,14 +1,14 @@
-package br.com.michelbarbosa.hearthstonedusthelperlite.utils;
+package br.com.michelbarbosa.hearthstonedusthelperlite.utils.dustgenerator;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.List;
 
-import br.com.michelbarbosa.hearthstonedusthelperlite.model.Card;
+import br.com.michelbarbosa.hearthstonedusthelperlite.mvp.model.StaticCard;
 
 public class DustGenerator {
 
-    public static double investimentoTotal(List<Card> deck) {
+    public static double investimentoTotal(List<StaticCard> deck) {
         double totalValue = 0;
         for (int i = 0; i < deck.size(); i++) {
             totalValue += normalDustValue(deck.get(i).getRaridade());
@@ -16,7 +16,7 @@ public class DustGenerator {
         return totalValue;
     }
 
-    public static double quoeficiente(List<Card> deck) {
+    public static double quoeficiente(List<StaticCard> deck) {
         double tempValue = 0, totalValue = 0;
         for (int i = 0; i < deck.size(); i++) {
             if (deck.get(i).getClasse().equals("Neutro")) {
@@ -29,7 +29,7 @@ public class DustGenerator {
         return totalValue;
     }
 
-    public static double quoeficienteDeInvestimento(List<Card> deck) {
+    public static double quoeficienteDeInvestimento(List<StaticCard> deck) {
         DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
         decimalFormat.setRoundingMode(RoundingMode.DOWN);
         double valor = investimentoTotal(deck) / quoeficiente(deck);
@@ -42,7 +42,7 @@ public class DustGenerator {
 23/6 = 3.83
 
  */
-    public static String classificacaoGeral(List<Card> deck, int quantCards) {
+    public static String classificacaoGeral(List<StaticCard> deck, int quantCards) {
         double quoef = quoeficienteDeInvestimento(deck);
         String investimentoEh = "";
 /*
@@ -51,7 +51,7 @@ public class DustGenerator {
         }
 
         double quoef = (double)30/quantCards * quota;
-*/     //   Util.outputTextLog("quoef: ", String.valueOf(quoef / quantCards));
+*/     //   UIUtil.outputTextLog("quoef: ", String.valueOf(quoef / quantCards));
 
         if (quoef > 6 && quoef < 8) {
             investimentoEh = "Medio";

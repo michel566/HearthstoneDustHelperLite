@@ -1,7 +1,6 @@
-package br.com.michelbarbosa.hearthstonedusthelperlite.ui;
+package br.com.michelbarbosa.hearthstonedusthelperlite.ui.adapters;
 
 import android.content.Context;
-import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,19 +16,20 @@ import java.util.List;
 
 import br.com.michelbarbosa.hearthstonedusthelperlite.R;
 import br.com.michelbarbosa.hearthstonedusthelperlite.listeners.CardListener;
-import br.com.michelbarbosa.hearthstonedusthelperlite.model.Card;
-import br.com.michelbarbosa.hearthstonedusthelperlite.utils.Util;
+import br.com.michelbarbosa.hearthstonedusthelperlite.mvp.model.StaticCard;
+import br.com.michelbarbosa.hearthstonedusthelperlite.ui.fragments.CardFragment;
+import br.com.michelbarbosa.hearthstonedusthelperlite.utils.UIUtil;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder>{
 
     private Context context;
-    private final List<Card> deck;
+    private final List<StaticCard> deck;
 
     private int position;
 
     private CardListener listener;
 
-    public CardAdapter(Context context, List<Card> deck) {
+    public CardAdapter(Context context, List<StaticCard> deck) {
         this.context = context;
         this.deck = deck;
     }
@@ -42,7 +42,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder>{
         this.context = context;
     }
 
-    public List<Card> getDeck() {
+    public List<StaticCard> getDeck() {
         return deck;
     }
 
@@ -74,13 +74,13 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder>{
         //Crie uma nova instancia aqui da classe CardHolder criada
 
         //Aponta uma posicao para cada item
-        final Card card = deck.get(position);
-        CardFragment.setCardColor(holder.cardLayout, card);
-        holder.card_name.setText(card.getNome());
-        //holder.card_class.setText(card.getClasse());
-       // holder.card_rarity.setText(card.getRaridade());
-        holder.card_rarity.setBackgroundResource(Util.getImageGemToRarity(card.getRaridade()));
-        holder.card_collection.setText(card.getExpansao());
+        final StaticCard staticCard = deck.get(position);
+        CardFragment.setCardColor(holder.cardLayout, staticCard);
+        holder.card_name.setText(staticCard.getNome());
+        //holder.card_class.setText(staticCard.getClasse());
+       // holder.card_rarity.setText(staticCard.getRaridade());
+        holder.card_rarity.setBackgroundResource(UIUtil.getImageGemToRarity(staticCard.getRaridade()));
+        holder.card_collection.setText(staticCard.getExpansao());
 
         holder.removeCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,25 +101,25 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder>{
         return deck != null ? deck.size() : 0;
     }
 
-    public void updateList(Card card) {
-        insertCard(card);
+    public void updateList(StaticCard staticCard) {
+        insertCard(staticCard);
     }
 
     private void updateCard(int position) {
-        Card card = deck.get(position);
+        StaticCard staticCard = deck.get(position);
         notifyItemChanged(position);
     }
 
     // Método responsável por inserir um novo usuário na lista
     //e notificar que há novos itens.
-    private void insertCard(Card card) {
-        deck.add(card);
+    private void insertCard(StaticCard staticCard) {
+        deck.add(staticCard);
         notifyItemInserted(getItemCount());
     }
 
     // Método responsável por atualizar um usuário já existente na lista.
     private void updateItem(int position) {
-        Card card = deck.get(position);
+        StaticCard staticCard = deck.get(position);
         notifyItemChanged(position);
     }
 

@@ -1,4 +1,4 @@
-package br.com.michelbarbosa.hearthstonedusthelperlite.ui;
+package br.com.michelbarbosa.hearthstonedusthelperlite.ui.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -18,15 +18,16 @@ import java.util.ArrayList;
 
 import br.com.michelbarbosa.hearthstonedusthelperlite.R;
 import br.com.michelbarbosa.hearthstonedusthelperlite.listeners.CardListener;
-import br.com.michelbarbosa.hearthstonedusthelperlite.model.Card;
-import br.com.michelbarbosa.hearthstonedusthelperlite.utils.Util;
+import br.com.michelbarbosa.hearthstonedusthelperlite.mvp.model.StaticCard;
+import br.com.michelbarbosa.hearthstonedusthelperlite.ui.adapters.CardAdapter;
+import br.com.michelbarbosa.hearthstonedusthelperlite.utils.UIUtil;
 
 public class CardFragment extends Fragment {
 
     private CardListener listener;
-    private ArrayList<Card> cards;
+    private ArrayList<StaticCard> staticCards;
     private CardAdapter adapter;
-    private Card card;
+    private StaticCard staticCard;
 
     public CardFragment() {
 
@@ -47,7 +48,7 @@ public class CardFragment extends Fragment {
         recyclerViewofCards.setLayoutManager(layoutManager);
 
         // 3. create an adapter, and populate them
-        adapter = new CardAdapter(getContext(), new ArrayList<Card>(0));
+        adapter = new CardAdapter(getContext(), new ArrayList<StaticCard>(0));
 
         // 4. set adapter, and add objects to list
         recyclerViewofCards.setAdapter(adapter);
@@ -102,26 +103,26 @@ public class CardFragment extends Fragment {
 
     }
 
-    static ArrayList<Card> populateTestItens() {
-        ArrayList<Card> cardList = new ArrayList<>();
+    static ArrayList<StaticCard> populateTestItens() {
+        ArrayList<StaticCard> staticCardList = new ArrayList<>();
 
-        cardList.add(0, new Card("carta 1", "comum", "Paladino", "expansao1"));
-        cardList.add(1, new Card("carta 2", "rara", "Mago", "expansao3"));
-        cardList.add(2, new Card("carta 3", "rara", "Neutro", "expansao1"));
-        cardList.add(3, new Card("carta 4", "comum", "Ladino", "expansao2"));
-        cardList.add(4, new Card("carta 5", "lendaria", "Druida", "expansao2"));
-        cardList.add(5, new Card("carta 6", "comum", "Neutro", "expansao4"));
-        cardList.add(6, new Card("carta 7", "epica", "Bruxo", "expansao3"));
-        cardList.add(7, new Card("carta 8", "comum", "Xamã", "expansao4"));
-        cardList.add(8, new Card("carta 9", "comum", "Caçador", "expansao4"));
-        cardList.add(9, new Card("carta 10", "comum", "Ladino", "expansao1"));
+        staticCardList.add(0, new StaticCard("carta 1", "comum", "Paladino", "expansao1"));
+        staticCardList.add(1, new StaticCard("carta 2", "rara", "Mago", "expansao3"));
+        staticCardList.add(2, new StaticCard("carta 3", "rara", "Neutro", "expansao1"));
+        staticCardList.add(3, new StaticCard("carta 4", "comum", "Ladino", "expansao2"));
+        staticCardList.add(4, new StaticCard("carta 5", "lendaria", "Druida", "expansao2"));
+        staticCardList.add(5, new StaticCard("carta 6", "comum", "Neutro", "expansao4"));
+        staticCardList.add(6, new StaticCard("carta 7", "epica", "Bruxo", "expansao3"));
+        staticCardList.add(7, new StaticCard("carta 8", "comum", "Xamã", "expansao4"));
+        staticCardList.add(8, new StaticCard("carta 9", "comum", "Caçador", "expansao4"));
+        staticCardList.add(9, new StaticCard("carta 10", "comum", "Ladino", "expansao1"));
 
-        return cardList;
+        return staticCardList;
 
     }
 
-    static void setCardColor(RelativeLayout layout, Card card) {
-        layout.setBackgroundResource(Util.getBackgroundColorToClass(card.getClasse()));
+    public static void setCardColor(RelativeLayout layout, StaticCard staticCard) {
+        layout.setBackgroundResource(UIUtil.getBackgroundColorToClass(staticCard.getClasse()));
     }
 
     public CardAdapter getAdapter() {

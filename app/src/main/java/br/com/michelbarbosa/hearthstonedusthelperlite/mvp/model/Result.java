@@ -1,4 +1,4 @@
-package br.com.michelbarbosa.hearthstonedusthelperlite.model;
+package br.com.michelbarbosa.hearthstonedusthelperlite.mvp.model;
 
 public class Result {
 
