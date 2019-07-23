@@ -1,12 +1,14 @@
-package br.com.michelbarbosa.hearthstonedusthelperlite.ui;
+package br.com.michelbarbosa.hearthstonedusthelperlite.ui.activitys;
 
 import android.os.Bundle;
 
 import br.com.michelbarbosa.hearthstonedusthelperlite.R;
 import br.com.michelbarbosa.hearthstonedusthelperlite.listeners.CardListener;
-import br.com.michelbarbosa.hearthstonedusthelperlite.model.Card;
-import br.com.michelbarbosa.hearthstonedusthelperlite.model.Result;
-import br.com.michelbarbosa.hearthstonedusthelperlite.utils.DustGenerator;
+import br.com.michelbarbosa.hearthstonedusthelperlite.mvp.model.StaticCard;
+import br.com.michelbarbosa.hearthstonedusthelperlite.mvp.model.Result;
+import br.com.michelbarbosa.hearthstonedusthelperlite.ui.fragments.CardFragment;
+import br.com.michelbarbosa.hearthstonedusthelperlite.ui.fragments.FormFragment;
+import br.com.michelbarbosa.hearthstonedusthelperlite.utils.dustgenerator.DustGenerator;
 
 public class MainActivity extends BaseActivity implements CardListener {
 
@@ -26,8 +28,8 @@ public class MainActivity extends BaseActivity implements CardListener {
     }
 
     @Override
-    public void onUpdateDeckOnClick(Card card) {
-        cardFragment.getAdapter().updateList(formFragment.getCard());
+    public void onUpdateDeckOnClick(StaticCard staticCard) {
+        cardFragment.getAdapter().updateList(formFragment.getStaticCard());
     }
 
     @Override
@@ -43,7 +45,7 @@ public class MainActivity extends BaseActivity implements CardListener {
     }
 
     @Override
-    public void onGenerateCardDustOnClick(Card card) {
+    public void onGenerateCardDustOnClick(StaticCard staticCard) {
 
     }
 

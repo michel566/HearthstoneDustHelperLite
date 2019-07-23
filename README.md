@@ -1,6 +1,6 @@
 "# HearthstoneDustHelperLite" 
 
-Se encontra em sua versão alpha funcional, ou seja, ela pode ser utilizada, mas ainda pendente de algumas atualizações como utilizar a API do própio Hearthstone para leitura dos dados da carta, assim ao invés de preencher manualmente os dados do card, preencher no textview do nome da carta, com auxilio de auto preenchimento listar todas as cartas com o nome similar, assim auxiliando na usabilidade do aplicativo.
+Se encontra em sua versão alpha funcional, ou seja, ela pode ser utilizada, mas ainda pendente de algumas atualizações como utilizar a API do própio Hearthstone para leitura dos dados da carta, assim ao invés de preencher manualmente os dados do staticCard, preencher no textview do nome da carta, com auxilio de auto preenchimento listar todas as cartas com o nome similar, assim auxiliando na usabilidade do aplicativo.
 
 Falta também melhoras na interface gráfica da aplicação, além de incluir uma activity de pesos e medidas para cada tipo de raridade e seus conjuntos.
 

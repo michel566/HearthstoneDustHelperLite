@@ -1,13 +1,13 @@
-package br.com.michelbarbosa.hearthstonedusthelperlite.model;
+package br.com.michelbarbosa.hearthstonedusthelperlite.mvp.model;
 
-public class Card {
+public class StaticCard {
 
     private String nome;
     private String raridade;
     private String classe;
     private String expansao;
 
-    public Card(String nome, String raridade, String classe, String expansao) {
+    public StaticCard(String nome, String raridade, String classe, String expansao) {
         this.nome = nome;
         this.raridade = raridade;
         this.classe = classe;
