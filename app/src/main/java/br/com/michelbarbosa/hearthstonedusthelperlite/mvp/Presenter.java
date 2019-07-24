@@ -1,5 +1,7 @@
 package br.com.michelbarbosa.hearthstonedusthelperlite.mvp;
 
+import android.util.Log;
+
 import java.util.List;
 
 import javax.inject.Inject;

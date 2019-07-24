@@ -37,6 +37,13 @@ public class BaseActivity extends AppCompatActivity implements IView {
         super.onCreate(savedInstanceState);
         ((MainApp) getApplication()).getmAppComponent().inject(this);
         mPresenter.setmView(this);
+        loadDataAPIModules();
+    }
+
+    //Método para carregar os Modulos da API necessarios que serão usados em todo projeto
+    private void loadDataAPIModules(){
+        //O método getInfo é necessário para carregar os dados de informacao das cartas
+        mPresenter.getInfo();
     }
 
     void managerFragmentTransaction(int idContainer, Fragment fragment) {
@@ -91,4 +98,5 @@ public class BaseActivity extends AppCompatActivity implements IView {
             mProgressBar.setVisibility(View.GONE);
         }
     }
+
 }

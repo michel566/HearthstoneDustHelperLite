@@ -1,6 +1,9 @@
 package br.com.michelbarbosa.hearthstonedusthelperlite.utils;
 
+import android.support.constraint.ConstraintLayout;
 import android.util.Log;
+import android.widget.RelativeLayout;
+
 import java.util.List;
 import java.util.Locale;
 
@@ -9,8 +12,15 @@ import br.com.michelbarbosa.hearthstonedusthelperlite.mvp.model.StaticCard;
 
 public class UIUtil {
 
-    public static int getBackgroundColorToClass(String classe) {
+    public static void setBackgroundColor(RelativeLayout layout, StaticCard staticCard) {
+        layout.setBackgroundResource(UIUtil.pegarClassePorCor(staticCard.getClasse()));
+    }
 
+    public static void setBackgroundColor(ConstraintLayout layout, String className) {
+        layout.setBackgroundResource(UIUtil.getBackgroundColorToClass(className));
+    }
+
+    private static int pegarClassePorCor(String classe) {
         if (classe != null) {
             switch (classe) {
                 case ("Paladino"):
@@ -40,6 +50,42 @@ public class UIUtil {
             return R.color.colorPrimary;
         }
     }
+
+    private static int getBackgroundColorToClass(String classe) {
+        if (classe != null) {
+            switch (classe) {
+                case ("Paladin"):
+                    return R.color.paladinColor;
+                case ("Druid"):
+                    return R.color.druidColor;
+                case ("Hunter"):
+                    return R.color.hunterColor;
+                case ("Mage"):
+                    return R.color.mageColor;
+                case ("Warrior"):
+                    return R.color.warriorColor;
+                case ("Priest"):
+                    return R.color.priestColor;
+                case ("Warlock"):
+                    return R.color.warlockColor;
+                case ("Shaman"):
+                    return R.color.shamanColor;
+                case ("Rogue"):
+                    return R.color.rogueColor;
+                case ("Neutral"):
+                    return R.color.neutralColor;
+                case ("Dream"):
+                    return R.color.dreamColor;
+                case ("Death Knight"):
+                    return R.color.dkColor;
+                default:
+                    return R.color.colorPrimary;
+            }
+        } else {
+            return R.color.colorPrimary;
+        }
+    }
+
 
     public static int getImageGemToRarity(String raridade){
 

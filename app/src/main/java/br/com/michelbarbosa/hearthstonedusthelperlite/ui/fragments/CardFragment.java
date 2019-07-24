@@ -121,9 +121,6 @@ public class CardFragment extends Fragment {
 
     }
 
-    public static void setCardColor(RelativeLayout layout, StaticCard staticCard) {
-        layout.setBackgroundResource(UIUtil.getBackgroundColorToClass(staticCard.getClasse()));
-    }
 
     public CardAdapter getAdapter() {
         return adapter;
