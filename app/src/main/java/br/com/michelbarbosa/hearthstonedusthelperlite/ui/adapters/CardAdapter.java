@@ -17,7 +17,6 @@ import java.util.List;
 import br.com.michelbarbosa.hearthstonedusthelperlite.R;
 import br.com.michelbarbosa.hearthstonedusthelperlite.listeners.CardListener;
 import br.com.michelbarbosa.hearthstonedusthelperlite.mvp.model.StaticCard;
-import br.com.michelbarbosa.hearthstonedusthelperlite.ui.fragments.CardFragment;
 import br.com.michelbarbosa.hearthstonedusthelperlite.utils.UIUtil;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder>{
@@ -75,7 +74,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder>{
 
         //Aponta uma posicao para cada item
         final StaticCard staticCard = deck.get(position);
-        CardFragment.setCardColor(holder.cardLayout, staticCard);
+        UIUtil.setBackgroundColor(holder.cardLayout, staticCard);
         holder.card_name.setText(staticCard.getNome());
         //holder.card_class.setText(staticCard.getClasse());
        // holder.card_rarity.setText(staticCard.getRaridade());

@@ -9,15 +9,18 @@
     <color name="countColor">#304F82</color>
     <color name="countColorMax">#A71220</color>
 
-    <color name="paladinColor">#EBB542</color>
-    <color name="druidColor">#704234</color>
-    <color name="hunterColor">#248633</color>
-    <color name="warriorColor">#B03535</color>
-    <color name="mageColor">#5169E5</color>
-    <color name="priestColor">#EEEEEE</color>
-    <color name="warlockColor">#622895</color>
-    <color name="shamanColor">#4444AA</color>
-    <color name="rogueColor">#444444</color>
+    <color name="paladinColor">#ddbf54</color>
+    <color name="druidColor">#9a8060</color>
+    <color name="hunterColor">#487646</color>
+    <color name="warriorColor">#8f3a38</color>
+    <color name="mageColor">#7b7ae2</color>
+    <color name="priestColor">#cacaca</color>
+    <color name="warlockColor">#4b3b72</color>
+    <color name="shamanColor">#30457c</color>
+    <color name="rogueColor">#3f3f3f</color>
     <color name="neutralColor">#999999</color>
+    <color name="dreamColor">#249945</color>
+    <color name="dkColor">#042436</color>
+
 
 </resources>
