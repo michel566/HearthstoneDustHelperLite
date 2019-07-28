@@ -7,3 +7,5 @@ Falta também melhoras na interface gráfica da aplicação, além de incluir um
 Depois de feito isso tudo, e com revisão de código e tudo mais, estará pronta para o lançamento do seu beta e em seguida a sua publicação no playstore.
 
 Futuramente, pretendo fazer um site com o mesmo formato, utilizando javascript e angular, dessa forma, até criando um repositorio de futuros decks, a qual pode se criar no aplicativo ou site.
+
+Falta também a construção de um protótipo funcional e a implementação do Hearthstone deckstrings para importação e exportação de decks.
